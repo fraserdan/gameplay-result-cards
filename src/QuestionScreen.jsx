@@ -73,7 +73,6 @@ export default function QuestionScreen({ question, onSwipe, animKey }) {
 
   const layerTransition = drag.dragging ? "none" : `transform ${EXIT_DURATION}ms cubic-bezier(0.16, 1, 0.3, 1)`;
   const bgOffset = parallax(drag.x, -0.65, 55);
-  const chromeOffset = parallax(drag.x, -0.3, 60);
   const cardOffset = parallax(drag.x, 0.15, 70);
 
   return (
@@ -101,57 +100,56 @@ export default function QuestionScreen({ question, onSwipe, animKey }) {
         />
 
         <div className="question-content">
-          <div className="question-top-group">
-            <div className="status-bar-spacer" aria-hidden="true" />
-
-            <div className="hud" style={{ transform: `translateX(${chromeOffset}px)`, transition: layerTransition }}>
-              <div className="hud-stats-row">
-                <p className="hud-stat">LVL: Legend</p>
-                <div className="hud-lives">
-                  <Heart filled={true} />
-                  <Heart filled={false} />
-                  <Heart filled={false} />
-                </div>
-                <p className="hud-stat hud-stat-right">Score: 250</p>
-              </div>
-              <div className="hud-progress-row">
-                <div className="hud-progress-track">
-                  <img className="hud-progress-segment" src={waveFilled} alt="" />
-                  <img className="hud-progress-segment" src={waveTrack} alt="" />
-                </div>
-                <img className="hud-pause" src={pauseIcon} alt="" />
-              </div>
-              <div className="hud-divider" />
+          <div className="card-wrap" style={{ transform: `translateX(${cardOffset}px)`, transition: layerTransition }}>
+            <div className="question-card">
+              <p className="question-text">{question}</p>
             </div>
 
-            <div className="card-wrap" style={{ transform: `translateX(${cardOffset}px)`, transition: layerTransition }}>
-              <div className="question-card">
-                <p className="question-text">{question}</p>
-              </div>
-
-              <div className="monster-wrap" aria-hidden="true">
-                <img className="monster-shadow" src={characterShadow} alt="" />
-                <img className="monster-character" src={character} alt="" />
-              </div>
+            <div className="monster-wrap" aria-hidden="true">
+              <img className="monster-shadow" src={characterShadow} alt="" />
+              <img className="monster-character" src={character} alt="" />
             </div>
           </div>
+        </div>
+      </div>
 
-          <div
-            className="swipe-gestures"
-            style={{ transform: `translateX(${chromeOffset}px)`, transition: layerTransition }}
-          >
-            <div className="swipe-gesture swipe-gesture-left">
-              <img className="swipe-gesture-icon" src={iconDataTransfer} alt="" />
-              <p className="swipe-gesture-label">Wireless Data Transfer</p>
+      <div className="fixed-header">
+        <div className="status-bar-spacer" aria-hidden="true" />
+
+        <div className="hud">
+          <div className="hud-stats-row">
+            <p className="hud-stat">LVL: Legend</p>
+            <div className="hud-lives">
+              <Heart filled={true} />
+              <Heart filled={false} />
+              <Heart filled={false} />
             </div>
-            <div className="swipe-gesture swipe-gesture-right">
-              <SwipeIcon className="swipe-gesture-icon swipe-gesture-icon-flip" fill="#202124" />
-              <p className="swipe-gesture-label">
-                Circle
-                <br />
-                to Search
-              </p>
+            <p className="hud-stat hud-stat-right">Score: 250</p>
+          </div>
+          <div className="hud-progress-row">
+            <div className="hud-progress-track">
+              <img className="hud-progress-segment" src={waveFilled} alt="" />
+              <img className="hud-progress-segment" src={waveTrack} alt="" />
             </div>
+            <img className="hud-pause" src={pauseIcon} alt="" />
+          </div>
+          <div className="hud-divider" />
+        </div>
+      </div>
+
+      <div className="fixed-footer">
+        <div className="swipe-gestures">
+          <div className="swipe-gesture swipe-gesture-left">
+            <img className="swipe-gesture-icon" src={iconDataTransfer} alt="" />
+            <p className="swipe-gesture-label">Wireless Data Transfer</p>
+          </div>
+          <div className="swipe-gesture swipe-gesture-right">
+            <SwipeIcon className="swipe-gesture-icon swipe-gesture-icon-flip" fill="#202124" />
+            <p className="swipe-gesture-label">
+              Circle
+              <br />
+              to Search
+            </p>
           </div>
         </div>
       </div>
