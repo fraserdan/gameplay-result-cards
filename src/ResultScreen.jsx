@@ -16,27 +16,6 @@ const CONTENT = {
   },
 };
 
-const LETTER_STAGGER_MS = 45;
-const LETTER_START_DELAY_MS = 150;
-
-function MaskedHeadline({ text }) {
-  const letters = Array.from(text);
-  return (
-    <h1 className="headline" aria-label={text}>
-      {letters.map((char, i) => (
-        <span className="letter-mask" key={i} aria-hidden="true">
-          <span
-            className="letter-inner"
-            style={{ animationDelay: `${LETTER_START_DELAY_MS + i * LETTER_STAGGER_MS}ms` }}
-          >
-            {char === " " ? " " : char}
-          </span>
-        </span>
-      ))}
-    </h1>
-  );
-}
-
 export default function ResultScreen({ variant, animKey }) {
   const copy = CONTENT[variant];
 
@@ -46,7 +25,7 @@ export default function ResultScreen({ variant, animKey }) {
         <div className="status-bar-spacer" aria-hidden="true" />
 
         <div className="content">
-          <MaskedHeadline text={copy.headline} />
+          <h1 className="headline">{copy.headline}</h1>
 
           <div className="reveal-group">
             <div className="feature-card">

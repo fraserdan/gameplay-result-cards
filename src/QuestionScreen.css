@@ -1,0 +1,242 @@
+.phone-frame.question {
+  position: relative;
+  background: #4b4b4b;
+}
+
+.swipe-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+  will-change: transform;
+  user-select: none;
+}
+
+.swipe-frame.exiting {
+  cursor: default;
+}
+
+.question-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60px;
+  width: calc(100% + 120px);
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.question-top-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42%;
+  background: linear-gradient(to bottom, rgba(50, 98, 126, 0.85), rgba(50, 98, 126, 0));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.question-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 40px;
+}
+
+.question-top-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.hud {
+  display: flex;
+  flex-direction: column;
+  width: 356px;
+  max-width: calc(100% - 40px);
+  padding: 0 12px;
+}
+
+.hud-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.hud-stat {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.hud-stat-right {
+  text-align: right;
+}
+
+.hud-lives {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.hud-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.hud-progress-track {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+}
+
+.hud-progress-segment {
+  flex: 1;
+  width: 100%;
+  height: 4px;
+  display: block;
+}
+
+.hud-pause {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.hud-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.35);
+  margin-top: 4px;
+}
+
+.card-wrap {
+  position: relative;
+  z-index: 3;
+  width: 356px;
+  max-width: calc(100% - 40px);
+  margin-top: 4px;
+}
+
+.question-card {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px 20px;
+  min-height: 144px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.question-text {
+  margin: 0;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.3;
+  text-align: center;
+  color: #000;
+}
+
+.monster-wrap {
+  position: absolute;
+  left: 50%;
+  top: 165px;
+  width: 320px;
+  height: 280px;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.monster-character {
+  position: absolute;
+  left: 50%;
+  top: -8px;
+  width: 100%;
+  height: auto;
+  transform: translateX(-50%);
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.monster-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 58%;
+  transform: translateX(-50%);
+}
+
+.swipe-gestures {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 356px;
+  max-width: calc(100% - 40px);
+}
+
+.swipe-gesture {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.swipe-gesture-left {
+  align-items: flex-start;
+}
+
+.swipe-gesture-right {
+  align-items: flex-end;
+}
+
+.swipe-gesture-icon {
+  width: 27px;
+  height: 28px;
+}
+
+.swipe-gesture-icon-flip {
+  width: 32px;
+  height: 32px;
+  transform: scaleX(-1);
+}
+
+.swipe-gesture-label {
+  margin: 0;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.25;
+  color: #202124;
+}
+
+.swipe-gesture-right .swipe-gesture-label {
+  text-align: right;
+}
