@@ -1,12 +1,7 @@
 .phone-frame.question {
   position: relative;
-  background-image: linear-gradient(
-    180deg,
-    #d2e3fc 51.363%,
-    #f0f6ff 75.057%,
-    #d2e3fc 83.005%,
-    #9378ff 122.9%
-  );
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 38%),
+    linear-gradient(180deg, #d2e3fc 51.363%, #f0f6ff 75.057%, #d2e3fc 83.005%, #9378ff 122.9%);
 }
 
 .swipe-frame {
@@ -34,8 +29,13 @@
   width: calc(100% + 120px);
   height: 100%;
   object-fit: cover;
+  object-position: center;
   z-index: 0;
   pointer-events: none;
+}
+
+.guru .question-bg {
+  object-position: center 75%;
 }
 
 .question-top-gradient {
@@ -49,6 +49,11 @@
   pointer-events: none;
 }
 
+.guru .question-top-gradient {
+  height: 22%;
+  background: linear-gradient(to bottom, rgba(140, 29, 32, 0.9), rgba(140, 29, 32, 0));
+}
+
 .question-content {
   position: relative;
   z-index: 2;
@@ -56,7 +61,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 174px;
+  padding-top: 161px;
 }
 
 .fixed-header {
@@ -93,14 +98,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 0;
+  padding: 12px 0 4px;
 }
 
 .hud-stat {
   margin: 0;
   font-family: "Inter", "Segoe UI", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #fff;
@@ -116,37 +121,89 @@
   align-items: center;
 }
 
+.heart {
+  position: relative;
+  display: inline-block;
+  width: 21px;
+  height: 19px;
+}
+
+.heart-outline,
+.heart-filled {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.heart-losing {
+  animation: heart-balloon-away 1100ms ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes heart-balloon-away {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-46px) scale(0.6);
+    opacity: 0;
+  }
+}
+
 .hud-progress-row {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 0;
+  padding: 4px 0 10px;
 }
 
 .hud-progress-track {
+  position: relative;
   flex: 1;
-  display: flex;
-  gap: 8px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.4);
 }
 
-.hud-progress-segment {
-  flex: 1;
+.hud-progress-fill {
+  position: absolute;
+  inset: 0;
+  width: 46%;
+  height: 100%;
+  border-radius: 2px;
+  background: #fff;
+}
+
+.guru-track {
+  outline: 1px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 1px;
+  box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.5);
+}
+
+.guru-fill {
   width: 100%;
-  height: 4px;
-  display: block;
+  background: linear-gradient(90deg, #d93025, #fbbc04, #1e8e3e, #1a73e8, #ea4335, #d93025);
+  background-size: 300% 100%;
+  animation: guru-shimmer var(--shimmer-duration, 2s) linear infinite;
+  box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.85), 0 0 12px 4px rgba(255, 255, 255, 0.35);
+  transition: clip-path linear 120ms;
+}
+
+@keyframes guru-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 .hud-pause {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   flex-shrink: 0;
-}
-
-.hud-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.35);
-  margin-top: 4px;
 }
 
 .card-wrap {
@@ -154,6 +211,12 @@
   z-index: 3;
   width: 356px;
   max-width: calc(100% - 40px);
+  margin-top: 40px;
+}
+
+.card-wrap.guru {
+  width: 376px;
+  max-width: calc(100% - 20px);
 }
 
 .question-card {

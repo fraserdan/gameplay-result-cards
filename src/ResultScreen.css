@@ -5,41 +5,66 @@
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-}
-
-@property --stop1 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 88%;
+  background-image: linear-gradient(180deg, #d2e3fc 51.363%, #f0f6ff 75.057%, #d2e3fc 83.005%, #9378ff 122.9%);
 }
 
 .screen {
   position: relative;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-bottom: 80px;
   opacity: 0;
   transform: scale(0.97);
   animation: screen-enter 550ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.phone-frame.correct .screen {
-  --stop1: 88%;
-  background-image: linear-gradient(to top, #00b24b 0%, #00b24b var(--stop1), #3dc9ed 100%);
-  animation:
-    screen-enter 550ms cubic-bezier(0.16, 1, 0.3, 1) forwards,
-    gradient-breathe-correct 6s ease-in-out infinite alternate;
+.swipe-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 80px;
+  border-radius: 18px;
+  overflow: hidden;
+  touch-action: pan-y;
+  cursor: grab;
+  will-change: transform;
+  user-select: none;
 }
 
-.phone-frame.incorrect .screen {
-  --stop1: 47.361%;
-  background-image: linear-gradient(to top, #fc413d 0%, #fc413d var(--stop1), #ff6595 100%);
-  animation:
-    screen-enter 550ms cubic-bezier(0.16, 1, 0.3, 1) forwards,
-    gradient-breathe-incorrect 6s ease-in-out infinite alternate;
+.swipe-layer.exiting {
+  cursor: default;
+}
+
+/* A tall (stretched) tile of base->light->base is tiled vertically and
+   scrolled via background-position. Because adjacent tiles are identical,
+   scrolling by exactly one tile height loops with zero visible seam. */
+.phone-frame.correct .swipe-layer {
+  background-image: linear-gradient(
+    to top,
+    #00b24b 0%,
+    #00b24b 28%,
+    #3dc9ed 48%,
+    #3dc9ed 66%,
+    #00b24b 86%,
+    #00b24b 100%
+  );
+  background-size: 100% 900px;
+  animation: gradient-scroll 3400ms linear infinite;
+}
+
+.phone-frame.incorrect .swipe-layer {
+  background-image: linear-gradient(
+    to top,
+    #fc413d 0%,
+    #fc413d 28%,
+    #ff6595 48%,
+    #ff6595 66%,
+    #fc413d 86%,
+    #fc413d 100%
+  );
+  background-size: 100% 900px;
+  animation: gradient-scroll 3400ms linear infinite;
 }
 
 @keyframes screen-enter {
@@ -53,21 +78,12 @@
   }
 }
 
-@keyframes gradient-breathe-correct {
+@keyframes gradient-scroll {
   from {
-    --stop1: 88%;
+    background-position-y: 0;
   }
   to {
-    --stop1: 64%;
-  }
-}
-
-@keyframes gradient-breathe-incorrect {
-  from {
-    --stop1: 47.361%;
-  }
-  to {
-    --stop1: 23%;
+    background-position-y: -900px;
   }
 }
 
@@ -175,6 +191,7 @@
   align-items: center;
   gap: 12px;
   width: 100%;
+  pointer-events: none;
 }
 
 .swipe-icon {
